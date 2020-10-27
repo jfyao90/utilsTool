@@ -39,3 +39,74 @@ plt.show()
 # print(Sigma)
 
 
+
+# from sklearn.manifold import TSNE
+# from sklearn.datasets import load_iris
+# from sklearn.decomposition import PCA
+# import matplotlib.pyplot as plt
+# from sklearn import decomposition
+# import numpy as np
+# from sklearn.decomposition import PCA
+# from sklearn.datasets import load_iris
+# from mpl_toolkits.mplot3d import Axes3D
+
+# iris = load_iris()
+# X_tsne = TSNE(learning_rate=1000.0).fit_transform(iris.data)
+# X_pca = PCA().fit_transform(iris.data)
+# plt.figure(figsize=(10, 5))
+# plt.subplot(121)
+# plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=iris.target)
+# plt.subplot(122)
+# plt.scatter(X_pca[:, 0], X_pca[:, 1], c=iris.target)
+# plt.show()
+
+
+
+# # digits = datasets.load_digits()
+# # X = digits.data
+# # y = digits.target
+
+
+# def unpickle(file):
+#     import pickle
+#     with open(file, 'rb') as fo:
+#         dict = pickle.load(fo, encoding='bytes')
+#     return dict
+# cifar10test = unpickle(r'D:\data\cifar-10-batches-py\test_batch')
+# X = cifar10test[b'data']
+# y=  cifar10test[b'labels']
+
+
+# pca = decomposition.PCA(n_components=2)
+# X_reduced = pca.fit_transform(X)
+
+# plt.figure(figsize=(12,10))
+# plt.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y,edgecolor='none', alpha=0.7, s=40,cmap=plt.cm.get_cmap('nipy_spectral', 10))
+# plt.colorbar()
+# plt.title('MNIST. PCA projection')
+# plt.show()
+
+
+
+# from sklearn.manifold import TSNE
+
+# tsne = TSNE(random_state=17)
+# X_tsne = tsne.fit_transform(X)
+# plt.figure(figsize=(12,10))
+# plt.scatter(X_tsne[:, 0], X_tsne[:, 1], c=y,edgecolor='none', alpha=0.7, s=40,cmap=plt.cm.get_cmap('nipy_spectral', 10))
+# plt.colorbar()
+# plt.title('MNIST. t-SNE projection')
+# plt.show()
+
+# # 在实践中，我们选择的主成分数目会满足我们可以解释90%的初始数据散度
+# # （通过explained_variance_ratio）。在这里，这意味着我们将保留21个主成分；因此，我们将维度从64降至21.
+# pca = decomposition.PCA().fit(X)
+# plt.figure(figsize=(10,7))
+# plt.plot(np.cumsum(pca.explained_variance_ratio_), color='k', lw=2)
+# plt.xlabel('Number of components')
+# plt.ylabel('Total explained variance')
+# plt.xlim(0, 63)
+# plt.yticks(np.arange(0, 1.1, 0.1))
+# plt.axvline(21, c='b')
+# plt.axhline(0.9, c='r')
+# plt.show()
