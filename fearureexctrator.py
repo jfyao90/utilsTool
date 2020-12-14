@@ -198,21 +198,25 @@ def test(model, device, test_loader):
 #         y_hat = model_ft(x)
 #
 #
-#
+##保存到diss
 # features=np.array(in_list)
 # np.save("features",features)
 # labels_s=np.array(labels_list)
 # np.save("labels",labels_s)
 #
+
+##加载保存文件并进行TSNE
 fet = np.load('./features.npy')
 labels1 = np.load('./labels.npy')
 
-
 tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
 plot_only = 500
-fet = fet.view(fet.size()[0],-1)
-low_dim_embs = tsne.fit_transform(fet[:plot_only, :])
-labels11 = labels1.cpu().numpy()[:plot_only]
+t = features.shape[0]
+ft_tensor = torch.tensor(features)
+fets = ft_tensor.view(ft_tensor.size()[0],-1) #tensor采有view()函数
+low_dim_embs = tsne.fit_transform(fets[:plot_only, :])
+# labels11 = labels1.cpu().numpy()[:plot_only] #labels1已经是numpy了
+labels11 = labels1[:plot_only]
 plot_with_labels(low_dim_embs, labels11)
 
 
